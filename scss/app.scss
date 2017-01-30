@@ -92,10 +92,12 @@ body {
 			width: 100%;
 
 			#gameGrid {
-				#gridSquares {
+				width: (100%);
+				.gridSquares {
 					list-style-type: none;
-					float: right;
 					display: inline;
+					float: left;
+
 					border: 1px solid black;
 					box-sizing: border-box;
 				}
@@ -108,7 +110,7 @@ body {
 				width: 50%;
 				margin: auto;
 			};
-			.countdown-numbers {
+			#countdown-three {
 				display: none;
 				margin-top: 22%;
 				text-align: center;
