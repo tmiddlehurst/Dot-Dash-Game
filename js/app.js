@@ -17,16 +17,25 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 	}
 	// }
 
+	var gridWidth = 18, gridHeight = 10;
+	var gameGrid = $("#gameGrid");
+
 	function createGrid () {
-		var gridWidth = 4;
-		var gridHeight = 4;
+		var squareWidth = ((gameGrid.width()-1)/gridWidth);
+		var squareHeight = ((gameGrid.height()-1)/gridHeight);
+
 		for (var i = 0; i < (gridHeight*gridWidth); i++) {
-			var newSquare = document.createElement('li');
-			newSquare.textContent = i;
-			newSquare.setAttribute("class","gridSquares");
-			gameGrid.appendChild(newSquare);
+			var newSquare = $('<li></li>');
+			newSquare.html(i).attr("class","gridSquares");
+			newSquare.css('width', squareWidth + 'px').css('height', squareHeight + 'px');
+			gameGrid.append(newSquare);
 		}
 	}
-		createGrid();	
+
+	createGrid();	
+
+	function playerMove () {
+
+	}
 
 });
