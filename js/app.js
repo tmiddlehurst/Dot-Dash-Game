@@ -17,6 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 	}
 	// }
 
-	function createGrid ())
+	function createGrid () {
+		var gridWidth = 4;
+		var gridHeight = 4;
+		for (var i = 0; i < (gridHeight*gridWidth); i++) {
+			var newSquare = document.createElement('li');
+			newSquare.textContent = i;
+			newSquare.setAttribute("class","gridSquares");
+			gameGrid.appendChild(newSquare);
+		}
+	}
+		createGrid();	
 
 });

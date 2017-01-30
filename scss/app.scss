@@ -91,6 +91,16 @@ body {
 			height: 550px;
 			width: 100%;
 
+			#gameGrid {
+				#gridSquares {
+					list-style-type: none;
+					float: right;
+					display: inline;
+					border: 1px solid black;
+					box-sizing: border-box;
+				}
+			}
+
 			#instructions {
 				background-color: white;
 				text-align: center;
