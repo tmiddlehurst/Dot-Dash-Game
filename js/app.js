@@ -1,11 +1,22 @@
-document.getElementById("game-area").innerHTML = "Hello World!";
+document.addEventListener('DOMContentLoaded', function() {
+	console.log("hello");
 
-$(document).ready(function(){
-	$("#timer-and-scores").click(function(){
-	    $("#timer-and-scores").hide();
+	$("#go-button").click(function(){
+		console.log("go working");
+	   	$("#timer-and-scores").show();
+    	$("#instructions").slideUp();
+
 	});
 
-	$("#timer-and-scores").click(function(){
-	    $("#timer-and-scores").show();
-	});
-})
+	// function goCountdown {
+	// 	var count = 3;
+	// 	var counter = setInterval(timer,1500);
+
+	// 	function timer {
+
+	// 	}
+	// }
+
+	function createGrid ())
+
+});

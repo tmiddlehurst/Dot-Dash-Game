@@ -1,13 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundation for Sites</title>
+
+<!-- CSS -->
     <link rel="stylesheet" href="css/app.css">
+<!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+
   </head>
 <body>
   <main>
@@ -19,7 +20,22 @@
         The timer and scores here will be hidden until 'go' is pressed
       </p>
     </div>
-    <div id="game-area">This is The game area</div>
+    <div id="game-area">
+      <section id = "instructions">
+        <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150">
+        <div>
+          <p>Race your dot against a friend</p>
+          <p>use WASD or ↑ ← ↓ → to move</p>
+          <p>Reach the coloured square to earn points</p>
+          <p>The player with the most points after 1 minute wins!</p>
+          <input type="image" id="go-button" src="https://cdn0.iconfinder.com/data/icons/pokemon-go-vol-1/135/_Battle-128.png" />
+        </div>
+      </section>
+      <section id = "countdown-three" class="countdown-numbers">3</section>
+      <section id="countdown-two" class="countdown-numbers">2</section>
+      <section id="countdown-one" class="countdown-numbers">1</section>
+      <section id="countdown-dash" class="countdown-numbers">DASH</section>
+    </div>
   </main>
 </body>
 </html>
