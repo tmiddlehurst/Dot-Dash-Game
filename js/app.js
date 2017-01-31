@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 	}
 	// }
 
-	var gridWidth = 18, gridHeight = 10;
+	var gridWidth = 18, gridHeight = 11;
 	var gameGrid = $("#gameGrid");
 
 	function createGrid () {
@@ -32,10 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	createGrid();	
+	createGrid();
+
 
 	function playerMove () {
+		var playerSquare = 92;
+		var squares = $(".gridSquares");
+		console.log(squares[92]);
+		$("#squares"[92]).css("background-color", "red");
+		// squares[92].append(•);
 
 	}
+	playerMove();
 
 });
