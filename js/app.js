@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-	console.log("hello");
+	console.log("hello world");
 
 //=========================== 'Go' Button ==============================//
 
@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	   	$("#gameGrid").show();
 	   	$(".gridTiles").show();
     	$("#instructions").slideUp();
+    	var score = Math.floor(Math.random()*(gridHeight*gridWidth));
+    	console.log(score);
+    	var tiles = $(".gridTiles");
+
 
 	});
 
@@ -27,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	var gridWidth = 25, gridHeight = 16;
 	var gameGrid = $("#gameGrid");
-	var player1 = 92;
-	var player2 = 105;
+	var player1 = (gridWidth*(Math.round(gridHeight)/2)+Math.round(gridWidth/10));
+	var player2 = (gridWidth*((Math.round(gridHeight)/2)+1)-(1+Math.round(gridWidth/10)));
 //=====================================================================//
 
 //========================== Create Game Grid =========================//
@@ -52,11 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
 //============================================== player 1 =============// 
 	function player1Move (start, finish) {
 		var tiles = $(".gridTiles");
-		// var playerTile = tiles[92];
 		$(tiles[finish]).css("background-color", "red");
 		$(tiles[start]).css("background", "none");
-
-		// $(playerTile).css("background-color", "red");
 
 		console.log(start, finish);
 		player1 = finish;
@@ -89,11 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function player2Move (start, finish) {
 		var tiles = $(".gridTiles");
-		// var playerTile = tiles[92];
 		$(tiles[finish]).css("background-color", "blue");
 		$(tiles[start]).css("background", "none");
-
-		// $(playerTile).css("background-color", "red");
 
 		console.log(start, finish);
 		player2 = finish;
@@ -123,5 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //====================================================================//
 //====================================================================//
+
+//===========================
 
 });
