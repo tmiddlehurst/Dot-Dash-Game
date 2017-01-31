@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	var player2Position = (gridWidth*((Math.round(gridHeight)/2)+1)-(1+Math.round(gridWidth/10)));
 	createGrid();
 	var scoreTileNumber = createScoreTile();
+	var player1Score = 0;
+	var player2Score = 0;
 
 //=========================== 'Go' Button ==============================//
 
@@ -63,19 +65,32 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 //=====================================================================//
+//============================ Pad Scoring =============================//
+
+function pad(player1Score) {
+    return (player1Score < 10) ? '0' + player1Score.toString() : player1Score.toString();
+}
+
+//======================================================================//
 //======================== Scoring =====================================// 
 
 	function incrementPlayerScore (player) {
-		player++;
-		console.log(player);
+		if (player === 1) {
+			player1Score++;
+		} else {
+			player2Score++;
+		};
+		console.log(pad(player1Score));
 	}
 
 
 //======================================================================// 
-//=========================== Player Movement =========================//
+ 
+
+//=========================== Player Movement ==========================//
 	function playerMove (player, start, finish) {
 		var tiles = $(".gridTiles");
-		$(tiles[start]).css("background", "none");
+
 		if (player === 1) {
 			player1Position = finish;
 			$(tiles[finish]).css("background-color", "red");
@@ -83,6 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			player2Position = finish;
 			$(tiles[finish]).css("background-color", "blue");
 		}
+		$(tiles[start]).css("background", "none");
+
 		if (finish === scoreTileNumber) {
 			console.log("Score");
 			incrementPlayerScore(player);
