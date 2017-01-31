@@ -9,14 +9,33 @@ document.addEventListener('DOMContentLoaded', function() {
 	   	$("#gameGrid").show();
 	   	$(".gridTiles").show();
     	$("#instructions").slideUp();
-    	var score = Math.floor(Math.random()*(gridHeight*gridWidth));
-    	console.log(score);
-    	var tiles = $(".gridTiles");
+    	createScoreTile();
 
 
 	});
 
 //======================================================================//
+//======================== Create Score Tile ===========================//
+
+	function createScoreTile() {
+    	var scoreTile = Math.floor(Math.random()*(gridHeight*gridWidth));
+    	console.log(scoreTile);
+    	var tiles = $(".gridTiles");
+    	$(tiles[scoreTile]).css("background-color", "green");
+    }
+
+//======================================================================// 
+//======================== Scoring =====================================// 
+
+	var player1Score = 0;
+	function player1Scores () {
+		player1Score++;
+		console.log(player1Score);
+	}
+
+
+//======================================================================// 
+
 
 //=================== Game-Start Countdown (not working) ===============//
 
@@ -66,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	$(document).on("keyup", function(event) {
 		var start = player1;
 		var finish;
+		player1Scores();
 		switch(event.keyCode) {
 			case 87: 
 				finish = start - gridWidth;
