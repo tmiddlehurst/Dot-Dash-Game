@@ -31,17 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 //======================================================================// 
-//======================== Scoring =====================================// 
 
-	function incrementPlayerScore (player) {
-		playerScore1=0
-		playerScore2=0
-		("playerScore"+player)++;
-		console.log(player);
-	}
-
-
-//======================================================================// 
 
 
 //=================== Game-Start Countdown (not working) ===============//
@@ -73,19 +63,28 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 //=====================================================================//
+//======================== Scoring =====================================// 
 
+	function incrementPlayerScore (player) {
+		player++;
+		console.log(player);
+	}
+
+
+//======================================================================// 
 //=========================== Player Movement =========================//
 	function playerMove (player, start, finish) {
 		var tiles = $(".gridTiles");
-		$(tiles[finish]).css("background-color", "red");
 		$(tiles[start]).css("background", "none");
 		if (player === 1) {
 			player1Position = finish;
+			$(tiles[finish]).css("background-color", "red");
 		} else {
 			player2Position = finish;
+			$(tiles[finish]).css("background-color", "blue");
 		}
 		if (finish === scoreTileNumber) {
-			console.log("DUNNIT");
+			console.log("Score");
 			incrementPlayerScore(player);
 			scoreTileNumber = createScoreTile();
 		}
