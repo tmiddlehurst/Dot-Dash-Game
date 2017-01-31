@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	$("#go-button").click(function(){
 		console.log("go working");
 	   	$("#timer-and-scores").show();
-	   	$(".gameGrid").show();
-	   	$(".gridSquares").show();
+	   	$("#gameGrid").show();
+	   	$(".gridTiles").show();
     	$("#instructions").slideUp();
 
 	});
@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	var gridWidth = 18, gridHeight = 11;
 	var gameGrid = $("#gameGrid");
+	var player1 = 92;
+	var player2 = 105;
 //=====================================================================//
 
 //========================== Create Game Grid =========================//
@@ -47,15 +49,77 @@ document.addEventListener('DOMContentLoaded', function() {
 //=====================================================================//
 
 //=========================== Player Movement =========================//
-
-	function playerMove () {
-		var playerSquare = 92;
+//============================================== player 1 =============// 
+	function player1Move (start, finish) {
 		var tiles = $(".gridTiles");
-		console.log(tiles[92]);
-		$(tiles[92]).css("background-color", "red");
-		// $(squares[92]).html(•);
+		// var playerTile = tiles[92];
+		$(tiles[finish]).css("background-color", "red");
+		$(tiles[start]).css("background", "none");
 
+		// $(playerTile).css("background-color", "red");
+
+		console.log(start, finish);
+		player1 = finish;
 	}
-	playerMove();
+
+	$(document).on("keyup", function(event) {
+		var start = player1;
+		var finish;
+		switch(event.keyCode) {
+			case 87: 
+				finish = start - gridWidth;
+				break;
+			case 68: 
+				finish = start + 1;
+				break;
+			case 83: 
+				finish = start + gridWidth;
+				break;
+			case 65:
+				finish = start - 1;
+				break;
+			default: 
+				return;
+		}
+		player1Move(start, finish);
+	})
+
+//====================================================================//
+//============================================= player 2 =============//
+
+	function player2Move (start, finish) {
+		var tiles = $(".gridTiles");
+		// var playerTile = tiles[92];
+		$(tiles[finish]).css("background-color", "blue");
+		$(tiles[start]).css("background", "none");
+
+		// $(playerTile).css("background-color", "red");
+
+		console.log(start, finish);
+		player2 = finish;
+	}
+
+	$(document).on("keyup", function(event) {
+		var start = player2;
+		var finish;
+		switch(event.keyCode) {
+			case 38: 
+				finish = start - gridWidth;
+				break;
+			case 39: 
+				finish = start + 1;
+				break;
+			case 40: 
+				finish = start + gridWidth;
+				break;
+			case 37:
+				finish = start - 1;
+				break;
+			default: 
+				return;
+		}
+		player2Move(start, finish);
+	})
+
 
 });

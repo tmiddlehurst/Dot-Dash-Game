@@ -92,13 +92,13 @@ body {
 			width: 100%;
 
 			#gameGrid {
-				// display: none;
+				display: none;
 				margin: 0;
 				padding: 0;
 				width: 1008px;
 				height: 550px;
 				.gridTiles {
-					// display: none;
+					display: none;
 					list-style-type: none;
 					display: inline-block;
 					// float: right;
