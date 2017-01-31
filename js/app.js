@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
 	var gridWidth = 25, gridHeight = 16;
 	var gameGrid = $("#gameGrid");
 	var player1Position = (gridWidth*(Math.round(gridHeight)/2)+Math.round(gridWidth/10));
@@ -9,6 +8,21 @@ document.addEventListener('DOMContentLoaded', function() {
 	var scoreTileNumber = createScoreTile();
 	var player1Score = 0;
 	var player2Score = 0;
+
+
+//============================ Pad Scoring =============================//
+
+	function pad(player, player1Score, player2Score) {
+		if (player === 1) {
+			console.log("pad one is working")
+	    	return (player1Score < 10) ? '0' + player1Score.toString() : player1Score.toString();
+		} else {
+	    	return (player2Score < 10) ? '0' + player2Score.toString() : player2Score.toString();
+		}
+	}
+
+//======================================================================//
+
 
 //=========================== 'Go' Button ==============================//
 
@@ -20,7 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
     	$("#instructions").slideUp();
 
 
+
 	});
+
+//======================================================================//
+//======================== Update Scores ===============================//
+	function updateScores (player1Score, player2Score) {
+    	$('#player1-scoreboard').html(pad(1, player1Score));
+    	$('#player2-scoreboard').html(pad(2, player2Score));
+    	console.log(player1Score, player1Score);
+    }
 
 //======================================================================//
 //======================== Create Score Tile ===========================//
@@ -65,13 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 //=====================================================================//
-//============================ Pad Scoring =============================//
 
-function pad(player1Score) {
-    return (player1Score < 10) ? '0' + player1Score.toString() : player1Score.toString();
-}
-
-//======================================================================//
 //======================== Scoring =====================================// 
 
 	function incrementPlayerScore (player) {
@@ -80,7 +97,8 @@ function pad(player1Score) {
 		} else {
 			player2Score++;
 		};
-		console.log(pad(player1Score));
+		console.log(player1Score, player2Score)
+		updateScores(player1Score, player2Score);
 	}
 
 
