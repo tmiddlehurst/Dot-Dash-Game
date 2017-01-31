@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-	console.log("hello world");
+
+
+	var gridWidth = 25, gridHeight = 16;
+	var gameGrid = $("#gameGrid");
+	var player1Position = (gridWidth*(Math.round(gridHeight)/2)+Math.round(gridWidth/10));
+	var player2Position = (gridWidth*((Math.round(gridHeight)/2)+1)-(1+Math.round(gridWidth/10)));
+	createGrid();
+	var scoreTileNumber = createScoreTile();
 
 //=========================== 'Go' Button ==============================//
 
@@ -9,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	   	$("#gameGrid").show();
 	   	$(".gridTiles").show();
     	$("#instructions").slideUp();
-    	createScoreTile();
 
 
 	});
@@ -19,18 +25,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function createScoreTile() {
     	var scoreTile = Math.floor(Math.random()*(gridHeight*gridWidth));
-    	console.log(scoreTile);
     	var tiles = $(".gridTiles");
     	$(tiles[scoreTile]).css("background-color", "green");
+    	return scoreTile;
     }
 
 //======================================================================// 
 //======================== Scoring =====================================// 
 
-	var player1Score = 0;
-	function player1Scores () {
-		player1Score++;
-		console.log(player1Score);
+	function incrementPlayerScore (player) {
+		playerScore1=0
+		playerScore2=0
+		("playerScore"+player)++;
+		console.log(player);
 	}
 
 
@@ -48,10 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 	}
 	// }
 
-	var gridWidth = 25, gridHeight = 16;
-	var gameGrid = $("#gameGrid");
-	var player1 = (gridWidth*(Math.round(gridHeight)/2)+Math.round(gridWidth/10));
-	var player2 = (gridWidth*((Math.round(gridHeight)/2)+1)-(1+Math.round(gridWidth/10)));
+
 //=====================================================================//
 
 //========================== Create Game Grid =========================//
@@ -68,80 +72,79 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	createGrid();
 //=====================================================================//
 
 //=========================== Player Movement =========================//
-//============================================== player 1 =============// 
-	function player1Move (start, finish) {
+	function playerMove (player, start, finish) {
 		var tiles = $(".gridTiles");
 		$(tiles[finish]).css("background-color", "red");
 		$(tiles[start]).css("background", "none");
-
-		console.log(start, finish);
-		player1 = finish;
+		if (player === 1) {
+			player1Position = finish;
+		} else {
+			player2Position = finish;
+		}
+		if (finish === scoreTileNumber) {
+			console.log("DUNNIT");
+			incrementPlayerScore(player);
+			scoreTileNumber = createScoreTile();
+		}
 	}
 
+//====================================================================//
+//====================================================================//
+
 	$(document).on("keyup", function(event) {
-		var start = player1;
-		var finish;
-		player1Scores();
+		var player, start, finish;
 		switch(event.keyCode) {
 			case 87: 
+				player = 1;
+				start = player1Position;
 				finish = start - gridWidth;
 				break;
 			case 68: 
+				player = 1;
+				start = player1Position;
 				finish = start + 1;
 				break;
 			case 83: 
+				player = 1;
+				start = player1Position;				
 				finish = start + gridWidth;
 				break;
 			case 65:
+				player = 1;
+				start = player1Position;
 				finish = start - 1;
 				break;
-			default: 
-				return;
-		}
-		player1Move(start, finish);
-	})
-
-//====================================================================//
-//============================================= player 2 =============//
-
-	function player2Move (start, finish) {
-		var tiles = $(".gridTiles");
-		$(tiles[finish]).css("background-color", "blue");
-		$(tiles[start]).css("background", "none");
-
-		console.log(start, finish);
-		player2 = finish;
-	}
-
-	$(document).on("keyup", function(event) {
-		var start = player2;
-		var finish;
-		switch(event.keyCode) {
 			case 38: 
+				player = 2;
+				start = player2Position;
 				finish = start - gridWidth;
 				break;
 			case 39: 
+				player = 2;
+				start = player2Position;
 				finish = start + 1;
 				break;
 			case 40: 
+				player = 2;
+				start = player2Position;
 				finish = start + gridWidth;
 				break;
 			case 37:
+				player = 2;
+				start = player2Position;
 				finish = start - 1;
 				break;
 			default: 
 				return;
 		}
-		player2Move(start, finish);
+		playerMove(player, start, finish);
 	})
 
 //====================================================================//
-//====================================================================//
 
-//===========================
+
 
 });
