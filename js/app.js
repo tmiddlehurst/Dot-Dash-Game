@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 	}
 	// }
 
-	var gridWidth = 18, gridHeight = 11;
+	var gridWidth = 25, gridHeight = 16;
 	var gameGrid = $("#gameGrid");
 	var player1 = 92;
 	var player2 = 105;
@@ -121,5 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		player2Move(start, finish);
 	})
 
+//====================================================================//
+//====================================================================//
 
 });
