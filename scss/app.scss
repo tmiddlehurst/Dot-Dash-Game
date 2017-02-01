@@ -95,12 +95,12 @@ body {
 			#game-timer {
 				display: inline-block;
 				vertical-align: top;
-				margin-top: 7px;
+				margin-top: 3px;
 				height: 90px;
 				width: 150px;
 				background-color: #2c2c2c;
-				color: #febf4c;
-				font-size: 50px;
+				color: #befe4c;
+				font-size: 70px;
 				font-family: "Digital-7", Helvetica;
 			}
 
@@ -111,8 +111,8 @@ body {
 				height: 70px;
 				width: 120px;
 				background-color: #2c2c2c;
-				color: #befe4c;
-				font-size: 75px;
+				color: #febf4c;
+				font-size: 50px;
 				font-family: "Digital-7", Helvetica; 
 
 			}
@@ -138,7 +138,7 @@ body {
 					margin-bottom: 0;
 					display: inline-block;
 					// float: right;
-					border: 1px solid black;
+					border: 1px solid grey;
 					box-sizing: border-box;
 				}
 			}

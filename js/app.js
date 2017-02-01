@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		        $("#countdown-to-start").hide();
 		        clearInterval(interval);
 		        updateScoreBoards(player1Score,player2Score);
+		        gameTimer();
 		    }
 		}, 1000);
 	}
@@ -64,10 +65,32 @@ Once 1 minute timer expires:
 		Show option to replay game. This button resets the game. */ 
 
 	function gameTimer () {
-		var counter = 60;
+		var counter = 10;
 		var interval = setInterval (function() {
+			$("#game-timer").html(counter);
+			counter--;
+			if (counter === 0) {
+				checkWinner(player1Score,player2Score);
+				showWinScreen();
+			}
+		}, 1000);
+	}
+//======================================================================//
 
-		})
+//======================== Check Winner ================================//
+
+	function checkWinner (player1Score, player2Score) {
+		if (player1Score > player2Score) {
+			console.log("1");
+			return "1";
+		} else if (player2Score > player1Score) {
+			console.log("2");
+			return "2";
+		} else {
+			console.log("draw")
+			return "draw";
+		}
+	}
 
 //======================================================================//
 
