@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		for (var i = 0; i < (gridHeight*gridWidth); i++) {
 			var newTile = $('<li></li>');
 			newTile.attr("class","gridTiles");
-			newTile.html(i).css('width', tileWidth + 'px').css('height', tileHeight + 'px');
+			newTile.css('width', tileWidth + 'px').css('height', tileHeight + 'px');
 			gameGrid.append(newTile);
 		}
 	}
