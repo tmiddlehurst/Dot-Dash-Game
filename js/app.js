@@ -84,13 +84,13 @@ Once 1 minute timer expires:
 	function checkWinner (player1Score, player2Score) {
 		if (player1Score > player2Score) {
 			console.log("1");
-			return "1";
+			return "Player 1 Wins!";
 		} else if (player2Score > player1Score) {
 			console.log("2");
-			return "2";
+			return "Player 2 Wins!";
 		} else {
 			console.log("draw")
-			return "draw";
+			return "It Was a Tie!";
 		}
 	}
 
@@ -102,6 +102,7 @@ Once 1 minute timer expires:
 		$(".gridTiles").hide();
 		$("#game-timer").hide();
 		$("#win-screen").show();
+		$("#win-text").html(checkWinner(player1Score,player2Score));
 
 	}
 
