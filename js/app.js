@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 65:
 				player = 1;
 				start = player1Position;
-				finish = start - 1;
+				finish = moveWrapLeft(start, finish, gridWidth, gridHeight);
 				break;
 			case 38: 
 				player = 2;
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 37:
 				player = 2;
 				start = player2Position;
-				finish = start - 1;
+				finish = moveWrapLeft(start, finish, gridWidth, gridHeight);
 				break;
 			default: 
 				return;
@@ -79,10 +79,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //=========================== 'Go' Button ==============================//
 
-	$(".go-button").click(function() {
+	$("#go-button").click(function() {
     	$("#instructions").slideUp();
     	startCountdown();
 
+	});
+//======================================================================//
+
+//=========================== 'Replay' Button ==============================//
+
+	$("#replay-button").click(function() {
+		location.reload();
 	});
 //======================================================================//
 
@@ -104,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		        updateScoreBoards(player1Score,player2Score);
 		        gameTimer();
 		    }
-		}, 1000);
+		}, 750);
 	}
 //======================================================================//
 
@@ -125,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	function gameTimer () {
-		var counter = 100;
+		var counter = 5;
 		var interval = setInterval (function() {
 			$("#game-timer").html(counter);
 			counter--;
@@ -186,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		for (var i = 0; i < (gridHeight*gridWidth); i++) {
 			var newTile = $('<li></li>');
 			newTile.attr("class","gridTiles");
-			newTile.css('width', tileWidth + 'px').css('height', tileHeight + 'px');
+			newTile.html(i).css('width', tileWidth + 'px').css('height', tileHeight + 'px');
 			gameGrid.append(newTile);
 		}
 	}
@@ -247,17 +254,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		} else {
 			finish = start +1;
 		}
-		console.log(start,finish);
 		return finish;
 	}
 
-	function moveWrapRight (start, finish, gridWidth, gridHeight) {
-		if (finish ) {
-			finish = start - gridWidth + 1;
+	function moveWrapLeft (start, finish, gridWidth, gridHeight) {
+		if ((start%gridWidth) === 0) {
+			finish = start + gridWidth - 1;
 		} else {
-			finish = start +1;
+			finish = start -1;
 		}
-		console.log(start,finish);
 		return finish;
 	}
 
