@@ -10,13 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	var player2Score = 0;
 
 
+	// CURRENT PROBLEM: Player2Score is being updated to player1-scoreboard. player1score is undefined
+
+
 //============================ Pad Scoring =============================//
 
 	function pad(player, player1Score, player2Score) {
 		if (player === 1) {
-			console.log("pad one is working")
+			console.log("pad one is working");
 	    	return (player1Score < 10) ? '0' + player1Score.toString() : player1Score.toString();
 		} else {
+			console.log("pad two is working");
 	    	return (player2Score < 10) ? '0' + player2Score.toString() : player2Score.toString();
 		}
 	}
@@ -40,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
 //======================================================================//
 //======================== Update Scores ===============================//
 	function updateScores (player1Score, player2Score) {
-    	$('#player1-scoreboard').html(pad(1, player1Score));
-    	$('#player2-scoreboard').html(pad(2, player2Score));
-    	console.log(player1Score, player1Score);
+    	$('#player1-scoreboard').html(player1Score);
+    	$('#player2-scoreboard').html(player2Score);
+    	console.log(player1Score, player2Score);
     }
 
 //======================================================================//
@@ -91,13 +95,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //======================== Scoring =====================================// 
 
-	function incrementPlayerScore (player) {
+	function incrementPlayerScore (player, player1Score, player2Score) {
 		if (player === 1) {
 			player1Score++;
 		} else {
 			player2Score++;
 		};
-		console.log(player1Score, player2Score)
+		console.log("incrementPlayerScore is working");
 		updateScores(player1Score, player2Score);
 	}
 
