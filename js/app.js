@@ -66,7 +66,7 @@ Once 1 minute timer expires:
 		Show option to replay game. This button resets the game. */ 
 
 	function gameTimer () {
-		var counter = 1;
+		var counter = 10;
 		var interval = setInterval (function() {
 			$("#game-timer").html(counter);
 			counter--;
