@@ -11,6 +11,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// #694349 = the purple from mixing red and blue
 
+//====================== Key Up Event Listener =========================//
+
+	$(document).on("keyup", function(event) {
+		var player, start, finish;
+		switch(event.keyCode) {
+			case 87: 
+				player = 1;
+				start = player1Position;
+				finish = moveWrapUp(start, finish, gridWidth, gridHeight);
+				break;
+			case 68: 
+				player = 1;
+				start = player1Position;
+				finish = moveWrapRight(start, finish, gridWidth, gridHeight);
+				break;
+			case 83: 
+				player = 1;
+				start = player1Position;				
+				finish = moveWrapDown(start, finish, gridWidth, gridHeight);
+				break;
+			case 65:
+				player = 1;
+				start = player1Position;
+				finish = start - 1;
+				break;
+			case 38: 
+				player = 2;
+				start = player2Position;
+				finish = moveWrapUp(start, finish, gridWidth, gridHeight);
+				break;
+			case 39: 
+				player = 2;
+				start = player2Position;
+				finish = moveWrapRight(start, finish, gridWidth, gridHeight);
+				break;
+			case 40: 
+				player = 2;
+				start = player2Position;
+				finish = moveWrapDown(start, finish, gridWidth, gridHeight);
+				break;
+			case 37:
+				player = 2;
+				start = player2Position;
+				finish = start - 1;
+				break;
+			default: 
+				return;
+		}
+		playerMove(player, start, finish);
+	})
+//======================================================================//
+
 
 //============================ Pad Scoring =============================//
 
@@ -58,9 +110,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //======================== toggle game area ============================//
 
-	function toggleGame () {
+	// function toggleGame () {
+	// 	$("#gameGrid").show();
+	//    	$(".gridTiles").show();
+	//    	$("#game-timer").show();
+ //        $("#countdown-to-start").hide();
+ //       	$("#timer-and-scores").show();
 
-	};
+	// };
 
 //======================================================================//
 
@@ -166,29 +223,49 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (start < gridWidth) {
 			finish = (start + (gridWidth*gridHeight)-gridWidth);
 		} else {
-		finish = start - gridWidth;
+			finish = start - gridWidth;
 		}
 		return finish;
 	}
 	function moveWrapDown (start, finish, gridWidth, gridHeight) {
-		var bottomLeftValue = ((gridWidth*gridHeight)-gridWidth)
+		var bottomLeftValue = (gridWidth*gridHeight)-gridWidth;
 		if (start > bottomLeftValue) {
 			finish = (start - bottomLeftValue);
 		} else {
-		finish = start + gridWidth;
+			finish = start + gridWidth;
 		}
 		return finish;
 	}
 //======================================================================//
 
 //====================== Left-Right Movement Wrap ======================//
+	
+	function moveWrapRight (start, finish, gridWidth, gridHeight) {
+		var a = ((start+1)%gridWidth);
+		if (a === 0) {
+			finish = start - gridWidth + 1;
+		} else {
+			finish = start +1;
+		}
+		console.log(start,finish);
+		return finish;
+	}
+
+	function moveWrapRight (start, finish, gridWidth, gridHeight) {
+		if (finish ) {
+			finish = start - gridWidth + 1;
+		} else {
+			finish = start +1;
+		}
+		console.log(start,finish);
+		return finish;
+	}
 
 //======================================================================//
 
 //=========================== Player Movement ==========================//
 	function playerMove (player, start, finish) {
 		var tiles = $(".gridTiles");
-
 		if (player === 1) {
 			player1Position = finish;
 			$(tiles[finish]).css("background-color", "#9e2a2a");
@@ -205,54 +282,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 //====================================================================//
-	$(document).on("keyup", function(event) {
-		var player, start, finish;
-		switch(event.keyCode) {
-			case 87: 
-				player = 1;
-				start = player1Position;
-				finish = moveWrapUp(start, finish, gridWidth, gridHeight);
-				break;
-			case 68: 
-				player = 1;
-				start = player1Position;
-				finish = start + 1;
-				break;
-			case 83: 
-				player = 1;
-				start = player1Position;				
-				finish = moveWrapDown(start, finish, gridWidth, gridHeight);
-				break;
-			case 65:
-				player = 1;
-				start = player1Position;
-				finish = start - 1;
-				break;
-			case 38: 
-				player = 2;
-				start = player2Position;
-				finish = moveWrapUp(start, finish, gridWidth, gridHeight);
-				break;
-			case 39: 
-				player = 2;
-				start = player2Position;
-				finish = start + 1;
-				break;
-			case 40: 
-				player = 2;
-				start = player2Position;
-				finish = moveWrapDown(start, finish, gridWidth, gridHeight);
-				break;
-			case 37:
-				player = 2;
-				start = player2Position;
-				finish = start - 1;
-				break;
-			default: 
-				return;
+
+//========================== Collision ===============================//
+	
+	function collison (player1Position, player2Position, finish) {
+		if (player1Position === player2Position) {
+			console.log("collision");
 		}
-		playerMove(player, start, finish);
-	})
+	}
+//====================================================================//
+
+//====================================================================//
+	
 //====================================================================//
 
 
