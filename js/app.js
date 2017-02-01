@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	var gridWidth = 24, gridHeight = 16;
+	var gridWidth = 20, gridHeight = 16;
 	var gameGrid = $("#gameGrid");
 	var player1Score = 0;
 	var player2Score = 0;
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	function gameTimer () {
-		var counter = 10;
+		var counter = 100;
 		var interval = setInterval (function() {
 			$("#game-timer").html(counter);
 			counter--;
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //======================= Up-Down Movement Wrap ========================//
 
-	function moveWrap (start, finish, gridWidth, gridHeight) {
+	function moveWrapUp (start, finish, gridWidth, gridHeight) {
 		if (start < gridWidth) {
 			finish = (start + (gridWidth*gridHeight)-gridWidth);
 		} else {
@@ -170,24 +170,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		return finish;
 	}
+	function moveWrapDown (start, finish, gridWidth, gridHeight) {
+		var bottomLeftValue = ((gridWidth*gridHeight)-gridWidth)
+		if (start > bottomLeftValue) {
+			finish = (start - bottomLeftValue);
+		} else {
+		finish = start + gridWidth;
+		}
+		return finish;
+	}
+//======================================================================//
 
-
-	// 	switch(event.keyCode) {
-	// 		case 87 || 38:
-
-	// 			break;
-	// 		case 83 || 40:
-	// 			if (start >= (gridWidth*gridHeight)-gridWidth) {
-	// 				finish = (start - (gridWidth*gridHeight)-gridWidth);
-	// 			} else {
-	// 				finish = start + gridWidth;
-	// 			}
-	// 			return finish;
-	// 			break;
-	// 		default:
-	// 	}
-
-	// }
+//====================== Left-Right Movement Wrap ======================//
 
 //======================================================================//
 
@@ -217,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 87: 
 				player = 1;
 				start = player1Position;
-				finish = moveWrap(start, finish, gridWidth, gridHeight);
+				finish = moveWrapUp(start, finish, gridWidth, gridHeight);
 				break;
 			case 68: 
 				player = 1;
@@ -227,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 83: 
 				player = 1;
 				start = player1Position;				
-				finish = moveWrap(start, finish, gridWidth, gridHeight);
+				finish = moveWrapDown(start, finish, gridWidth, gridHeight);
 				break;
 			case 65:
 				player = 1;
@@ -237,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 38: 
 				player = 2;
 				start = player2Position;
-				finish = moveWrap(start, finish, gridWidth, gridHeight);
+				finish = moveWrapUp(start, finish, gridWidth, gridHeight);
 				break;
 			case 39: 
 				player = 2;
@@ -247,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 40: 
 				player = 2;
 				start = player2Position;
-				finish = moveWrap(start, finish, gridWidth, gridHeight);
+				finish = moveWrapDown(start, finish, gridWidth, gridHeight);
 				break;
 			case 37:
 				player = 2;
