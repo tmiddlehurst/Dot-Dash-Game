@@ -24,32 +24,21 @@ document.addEventListener('DOMContentLoaded', function() {
 	    	return (player2Score < 10) ? '0' + player2Score.toString() : player2Score.toString();
 		}
 	}
-
 //======================================================================//
-
 
 //=========================== 'Go' Button ==============================//
 
 	$("#go-button").click(function(){
 		console.log("go working");
 	   	$("#timer-and-scores").show();
-	   	$("#gameGrid").show();
-	   	$(".gridTiles").show();
     	$("#instructions").slideUp();
+    	startCountdown();
 
 
 
 	});
-
 //======================================================================//
-//======================== Update Scores ===============================//
-	function updateScores (player1Score, player2Score) {
-    	$('#player1-scoreboard').html(player1Score);
-    	$('#player2-scoreboard').html(player2Score);
-    	console.log(player1Score, player2Score);
-    }
 
-//======================================================================//
 //======================== Create Score Tile ===========================//
 
 	function createScoreTile() {
@@ -58,26 +47,26 @@ document.addEventListener('DOMContentLoaded', function() {
     	$(tiles[scoreTile]).css("background-color", "green");
     	return scoreTile;
     }
-
 //======================================================================// 
 
-
-
 //=================== Game-Start Countdown (not working) ===============//
+	function startCountdown() {
+		var counter = 3;
+		var interval = setInterval(function() {
+		    $('#countdown-to-start').html(counter);
+		    console.log(counter);
+		    counter--;
+		    if (counter === 0) {
+		    	$("#gameGrid").show();
+			   	$(".gridTiles").show();
+		        clearInterval(interval);
+		    }
+		}, 1500);
+	}
 
-	// function goCountdown {
-	// 	var count = 3;
-	// 	var counter = setInterval(timer,1500);
+//======================================================================//
 
-	// 	function timer {
-
-	// 	}
-	// }
-
-
-//=====================================================================//
-
-//========================== Create Game Grid =========================//
+//========================== Create Game Grid ==========================//
 
 	function createGrid () {
 		var tileWidth = ((gameGrid.width()-1)/gridWidth);
@@ -90,24 +79,32 @@ document.addEventListener('DOMContentLoaded', function() {
 			gameGrid.append(newTile);
 		}
 	}
+//======================================================================//
 
-//=====================================================================//
+//============================== Scoring ===============================// 
 
-//======================== Scoring =====================================// 
-
-	function incrementPlayerScore (player, player1Score, player2Score) {
+	function incrementPlayerScore (player) {
 		if (player === 1) {
 			player1Score++;
 		} else {
 			player2Score++;
 		};
 		console.log("incrementPlayerScore is working");
+		console.log(player1Score, player2Score)
 		updateScores(player1Score, player2Score);
 	}
 
 
-//======================================================================// 
- 
+//======================================================================//
+
+//======================== Update Scores ===============================//
+	function updateScores (player1Score, player2Score) {
+    	$('#player1-scoreboard').html(player1Score);
+    	$('#player2-scoreboard').html(player2Score);
+    	console.log(player1Score, player2Score);
+    }
+
+//======================================================================//
 
 //=========================== Player Movement ==========================//
 	function playerMove (player, start, finish) {
@@ -128,8 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			scoreTileNumber = createScoreTile();
 		}
 	}
-
 //====================================================================//
+
 //====================================================================//
 
 	$(document).on("keyup", function(event) {
@@ -180,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		playerMove(player, start, finish);
 	})
-
 //====================================================================//
 
 
