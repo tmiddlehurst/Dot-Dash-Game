@@ -152,7 +152,10 @@ body {
 				width: 50%;
 				margin: 5% 25%;
 				div {
+					margin-top: 25px;
+					padding-top: 25px;
 					background-color: white;
+					border: 5px solid #540B0E;
 				}
 			};
 			#countdown-to-start {
@@ -165,6 +168,7 @@ body {
 			#win-screen {
 				display: none;
 
+				padding-top: 25px;
 				background-color: white;
 				text-align: center;
 				font-size: 40px;
