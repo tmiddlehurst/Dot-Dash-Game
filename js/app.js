@@ -160,6 +160,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //======================================================================//
 
+//======================= Up-Down Movement Wrap ========================//
+
+	function moveWrap (start, finish, gridWidth, gridHeight) {
+		if (start < gridWidth) {
+			finish = (start + (gridWidth*gridHeight)-gridWidth);
+		} else {
+		finish = start - gridWidth;
+		}
+		return finish;
+	}
+
+
+	// 	switch(event.keyCode) {
+	// 		case 87 || 38:
+
+	// 			break;
+	// 		case 83 || 40:
+	// 			if (start >= (gridWidth*gridHeight)-gridWidth) {
+	// 				finish = (start - (gridWidth*gridHeight)-gridWidth);
+	// 			} else {
+	// 				finish = start + gridWidth;
+	// 			}
+	// 			return finish;
+	// 			break;
+	// 		default:
+	// 	}
+
+	// }
+
+//======================================================================//
+
 //=========================== Player Movement ==========================//
 	function playerMove (player, start, finish) {
 		var tiles = $(".gridTiles");
@@ -186,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 87: 
 				player = 1;
 				start = player1Position;
-				finish = start - gridWidth;
+				finish = moveWrap(start, finish, gridWidth, gridHeight);
 				break;
 			case 68: 
 				player = 1;
@@ -196,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 83: 
 				player = 1;
 				start = player1Position;				
-				finish = start + gridWidth;
+				finish = moveWrap(start, finish, gridWidth, gridHeight);
 				break;
 			case 65:
 				player = 1;
@@ -206,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 38: 
 				player = 2;
 				start = player2Position;
-				finish = start - gridWidth;
+				finish = moveWrap(start, finish, gridWidth, gridHeight);
 				break;
 			case 39: 
 				player = 2;
@@ -216,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			case 40: 
 				player = 2;
 				start = player2Position;
-				finish = start + gridWidth;
+				finish = moveWrap(start, finish, gridWidth, gridHeight);
 				break;
 			case 37:
 				player = 2;
