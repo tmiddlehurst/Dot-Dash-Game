@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	var gridWidth = 25, gridHeight = 16;
+	var gridWidth = 24, gridHeight = 16;
 	var gameGrid = $("#gameGrid");
 	var player1Position = (gridWidth*(Math.round(gridHeight)/2)+Math.round(gridWidth/10));
 	var player2Position = (gridWidth*((Math.round(gridHeight)/2)+1)-(1+Math.round(gridWidth/10)));
@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	var scoreTileNumber = createScoreTile();
 	var player1Score = 0;
 	var player2Score = 0;
-
-
-	// CURRENT PROBLEM: Player2Score is being updated to player1-scoreboard. player1score is undefined
-
 
 //============================ Pad Scoring =============================//
 
@@ -39,6 +35,42 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 //======================================================================//
 
+//=================== Game-Start Countdown =============================//
+	function startCountdown() {
+		$("#countdown-to-start").show();
+		var counter = 3;
+		var interval = setInterval(function() {
+		    $('#countdown-to-start').html(counter);
+		    console.log(counter);
+		    counter--;
+		    if (counter === -1) {
+		    	$("#gameGrid").show();
+			   	$(".gridTiles").show();
+		        $("#countdown-to-start").hide();
+		        clearInterval(interval);
+		        updateScoreBoards(player1Score,player2Score);
+		    }
+		}, 1000);
+	}
+//======================================================================//
+
+//======================== Game 1 min timer ============================//
+
+/* Once Game-Start-Countdown expires, run a 1 minute timer.
+While timer is running, game is in play (GameGrid and GameTiles are visible).
+Once 1 minute timer expires: 
+	Winner is declared. Player with most points = winner. 
+	Hide GameGrid & GameTiles, show winner screen ("playerX wins").
+		Show option to replay game. This button resets the game. */ 
+
+	function gameTimer () {
+		var counter = 60;
+		var interval = setInterval (function() {
+
+		})
+
+//======================================================================//
+
 //======================== Create Score Tile ===========================//
 
 	function createScoreTile() {
@@ -49,23 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 //======================================================================// 
 
-//=================== Game-Start Countdown (not working) ===============//
-	function startCountdown() {
-		var counter = 3;
-		var interval = setInterval(function() {
-		    $('#countdown-to-start').html(counter);
-		    console.log(counter);
-		    counter--;
-		    if (counter === 0) {
-		    	$("#gameGrid").show();
-			   	$(".gridTiles").show();
-		        clearInterval(interval);
-		    }
-		}, 1500);
-	}
-
-//======================================================================//
-
 //========================== Create Game Grid ==========================//
 
 	function createGrid () {
@@ -74,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		for (var i = 0; i < (gridHeight*gridWidth); i++) {
 			var newTile = $('<li></li>');
-			newTile.html(i).attr("class","gridTiles");
+			newTile.attr("class","gridTiles");
 			newTile.css('width', tileWidth + 'px').css('height', tileHeight + 'px');
 			gameGrid.append(newTile);
 		}
@@ -91,14 +106,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 		console.log("incrementPlayerScore is working");
 		console.log(player1Score, player2Score)
-		updateScores(player1Score, player2Score);
+		updateScoreBoards(player1Score, player2Score);
 	}
 
 
 //======================================================================//
 
 //======================== Update Scores ===============================//
-	function updateScores (player1Score, player2Score) {
+	function updateScoreBoards (player1Score, player2Score) {
     	$('#player1-scoreboard').html(player1Score);
     	$('#player2-scoreboard').html(player2Score);
     	console.log(player1Score, player2Score);

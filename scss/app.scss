@@ -92,15 +92,27 @@ body {
 
 			}
 
-			.scoreboards {
+			#game-timer {
 				display: inline-block;
 				vertical-align: top;
-				margin-top: 10px;
-				height: 80px;
-				width: 120px;
+				margin-top: 7px;
+				height: 90px;
+				width: 150px;
 				background-color: #2c2c2c;
 				color: #febf4c;
 				font-size: 50px;
+				font-family: "Digital-7", Helvetica;
+			}
+
+			.scoreboards {
+				display: inline-block;
+				vertical-align: top;
+				margin: 15px 100px;
+				height: 70px;
+				width: 120px;
+				background-color: #2c2c2c;
+				color: #befe4c;
+				font-size: 75px;
 				font-family: "Digital-7", Helvetica; 
 
 			}
@@ -118,9 +130,12 @@ body {
 				padding: 0;
 				width: 1008px;
 				height: 550px;
+
 				.gridTiles {
+					vertical-align: top;
 					display: none;
 					list-style-type: none;
+					margin-bottom: 0;
 					display: inline-block;
 					// float: right;
 					border: 1px solid black;
@@ -137,9 +152,9 @@ body {
 			};
 			#countdown-to-start {
 				display: none;
-				margin-top: 22%;
+				margin-top: 30%;
 				text-align: center;
-				font-size: 50px;
+				font-size: 100px;
 			}
 
 			// #game-square {
