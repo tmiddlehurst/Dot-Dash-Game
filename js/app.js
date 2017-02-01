@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //=========================== 'Go' Button ==============================//
 
-	$("#go-button").click(function(){
+	$(".go-button").click(function(){
 		console.log("go working");
 	   	$("#timer-and-scores").show();
     	$("#instructions").slideUp();
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		    if (counter === -1) {
 		    	$("#gameGrid").show();
 			   	$(".gridTiles").show();
+			   	$("#game-timer").show();
 		        $("#countdown-to-start").hide();
 		        clearInterval(interval);
 		        updateScoreBoards(player1Score,player2Score);
