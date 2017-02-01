@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	function gameTimer () {
-		var counter = 5;
+		var counter = 60;
 		var interval = setInterval (function() {
 			$("#game-timer").html(counter);
 			counter--;
