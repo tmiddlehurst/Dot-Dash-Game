@@ -2,12 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	var gridWidth = 24, gridHeight = 16;
 	var gameGrid = $("#gameGrid");
+	var player1Score = 0;
+	var player2Score = 0;
 	var player1Position = (gridWidth*(Math.round(gridHeight)/2)+Math.round(gridWidth/10));
 	var player2Position = (gridWidth*((Math.round(gridHeight)/2)+1)-(1+Math.round(gridWidth/10)));
 	createGrid();
 	var scoreTileNumber = createScoreTile();
-	var player1Score = 0;
-	var player2Score = 0;
+
+	// #694349 = the purple from mixing red and blue
+
 
 //============================ Pad Scoring =============================//
 
@@ -24,13 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //=========================== 'Go' Button ==============================//
 
-	$(".go-button").click(function(){
-		console.log("go working");
-	   	$("#timer-and-scores").show();
+	$(".go-button").click(function() {
     	$("#instructions").slideUp();
     	startCountdown();
-
-
 
 	});
 //======================================================================//
@@ -48,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			   	$(".gridTiles").show();
 			   	$("#game-timer").show();
 		        $("#countdown-to-start").hide();
+		       	$("#timer-and-scores").show();
 		        clearInterval(interval);
 		        updateScoreBoards(player1Score,player2Score);
 		        gameTimer();
@@ -56,14 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 //======================================================================//
 
+//======================== toggle game area ============================//
+
+	function toggleGame () {
+
+	};
+
+//======================================================================//
+
 //======================== Game 1 min timer ============================//
 
-/* Once Game-Start-Countdown expires, run a 1 minute timer.
-While timer is running, game is in play (GameGrid and GameTiles are visible).
-Once 1 minute timer expires: 
-	Winner is declared. Player with most points = winner. 
-	Hide GameGrid & GameTiles, show winner screen ("playerX wins").
-		Show option to replay game. This button resets the game. */ 
 
 	function gameTimer () {
 		var counter = 10;
@@ -164,10 +166,10 @@ Once 1 minute timer expires:
 
 		if (player === 1) {
 			player1Position = finish;
-			$(tiles[finish]).css("background-color", "red");
+			$(tiles[finish]).css("background-color", "#9e2a2a");
 		} else {
 			player2Position = finish;
-			$(tiles[finish]).css("background-color", "blue");
+			$(tiles[finish]).css("background-color", "#335b67");
 		}
 		$(tiles[start]).css("background", "none");
 
@@ -178,9 +180,6 @@ Once 1 minute timer expires:
 		}
 	}
 //====================================================================//
-
-//====================================================================//
-
 	$(document).on("keyup", function(event) {
 		var player, start, finish;
 		switch(event.keyCode) {
@@ -229,6 +228,9 @@ Once 1 minute timer expires:
 		}
 		playerMove(player, start, finish);
 	})
+//====================================================================//
+
+
 //====================================================================//
 
 
