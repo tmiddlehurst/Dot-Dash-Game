@@ -65,11 +65,12 @@ Once 1 minute timer expires:
 		Show option to replay game. This button resets the game. */ 
 
 	function gameTimer () {
-		var counter = 10;
+		var counter = 1;
 		var interval = setInterval (function() {
 			$("#game-timer").html(counter);
 			counter--;
-			if (counter === 0) {
+			if (counter === -1) {
+		        clearInterval(interval);
 				checkWinner(player1Score,player2Score);
 				showWinScreen();
 			}
@@ -90,6 +91,17 @@ Once 1 minute timer expires:
 			console.log("draw")
 			return "draw";
 		}
+	}
+
+//======================================================================//
+
+//========================= Show Win Screen ============================//
+	function showWinScreen () {
+		$("#gameGrid").hide();
+		$(".gridTiles").hide();
+		$("#game-timer").hide();
+		$("#win-screen").show();
+
 	}
 
 //======================================================================//
