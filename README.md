@@ -19,7 +19,9 @@ Option 2: Go to the following URL in a browser:
 	https://dot-dash.herokuapp.com/
 
 
-
-
-
 ## Contributors
+
+Tom Middlehurst
+
+Special thanks to:
+Ollie Holden & the Web-Dev 3 gang for their help.
