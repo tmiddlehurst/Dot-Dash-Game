@@ -86,14 +86,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 //======================================================================//
 
-//=========================== 'Replay' Button ==============================//
+//=========================='Replay' Button ============================//
 
 	$("#replay-button").click(function() {
 		location.reload();
 	});
 //======================================================================//
 
-//=================== Game-Start Countdown =============================//
+//======================== Game-Start Countdown ========================//
 	function startCountdown() {
 		$("#countdown-to-start").show();
 		var counter = 3;
@@ -174,16 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //======================================================================//
 
-//======================== Create Score Tile ===========================//
-
-	function createScoreTile() {
-    	var scoreTile = Math.floor(Math.random()*(gridHeight*gridWidth));
-    	var tiles = $(".gridTiles");
-    	$(tiles[scoreTile]).css("background-color", "green");
-    	return scoreTile;
-    }
-//======================================================================// 
-
 //========================== Create Game Grid ==========================//
 
 	function createGrid () {
@@ -198,6 +188,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 //======================================================================//
+
+//======================== Create Score Tile ===========================//
+
+	function createScoreTile() {
+    	var scoreTile = Math.floor(Math.random()*(gridHeight*gridWidth));
+    	var tiles = $(".gridTiles");
+    	$(tiles[scoreTile]).css("background-color", "green");
+    	return scoreTile;
+    }
+//======================================================================// 
 
 //============================== Scoring ===============================// 
 
@@ -271,12 +271,13 @@ document.addEventListener('DOMContentLoaded', function() {
 //=========================== Player Movement ==========================//
 	function playerMove (player, start, finish) {
 		var tiles = $(".gridTiles");
+		collison(player1Position,player2Position,finish, tiles);
 		if (player === 1) {
 			player1Position = finish;
-			$(tiles[finish]).css("background-color", "#9e2a2a");
+			$(tiles[finish]).css("background-color", "#F03A47");
 		} else {
 			player2Position = finish;
-			$(tiles[finish]).css("background-color", "#335b67");
+			$(tiles[finish]).css("background-color", "#276FBF");
 		}
 		$(tiles[start]).css("background", "none");
 
@@ -290,9 +291,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //========================== Collision ===============================//
 	
-	function collison (player1Position, player2Position, finish) {
+	function collison (player1Position, player2Position, finish, tiles) {
 		if (player1Position === player2Position) {
 			console.log("collision");
+			$(tiles[finish]).css("background-color", "#694349");
 		}
 	}
 //====================================================================//
