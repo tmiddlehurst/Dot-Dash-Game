@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function createScoreTile() {
     	var scoreTile = Math.floor(Math.random()*(gridHeight*gridWidth));
     	var tiles = $(".gridTiles");
-    	$(tiles[scoreTile]).css("color", "black").html("+1").blink(100);
+    	$(tiles[scoreTile]).css("color", "black").html("+1");
     	return scoreTile;
     }
 //======================================================================// 
@@ -218,6 +218,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		} else {
 			player2Score++;
 		};
+		var audio = new Audio('Sounds/Pickup_Coin26.wav');
+		audio.play();
 		console.log("incrementPlayerScore is working");
 		console.log(player1Score, player2Score)
 		updateScoreBoards(player1Score, player2Score);
