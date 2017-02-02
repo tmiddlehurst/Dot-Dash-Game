@@ -77,6 +77,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 //======================================================================//
 
+//=========================== Load PLayers =============================//
+
+	function loadPlayers (player1Position, player2Position) {
+		var tiles = $(".gridTiles");
+		$(tiles[player1Position]).css("background-color", "#F03A47");
+	}
+
+//======================================================================//
+
 //=========================== 'Go' Button ==============================//
 
 	$("#go-button").click(function() {
@@ -179,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function createGrid () {
 		var tileWidth = ((gameGrid.width()-1)/gridWidth);
 		var tileHeight = ((gameGrid.height()-21)/gridHeight);
+		loadPlayers(player1Position, player2Position);
 
 		for (var i = 0; i < (gridHeight*gridWidth); i++) {
 			var newTile = $('<li></li>');
@@ -194,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function createScoreTile() {
     	var scoreTile = Math.floor(Math.random()*(gridHeight*gridWidth));
     	var tiles = $(".gridTiles");
-    	$(tiles[scoreTile]).css("background-color", "green");
+    	$(tiles[scoreTile]).css("background-color", "green").html("+1");
     	return scoreTile;
     }
 //======================================================================// 
@@ -278,7 +288,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			player2Position = finish;
 			$(tiles[finish]).css("background-color", "#276FBF");
 		}
-		$(tiles[start]).css("background", "none");
+		$(tiles[start]).css("background", "none").html("");
+
 		collison(player1Position,player2Position, tiles);
 
 		if (finish === scoreTileNumber) {
