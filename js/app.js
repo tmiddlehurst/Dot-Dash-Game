@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function createScoreTile() {
     	var scoreTile = Math.floor(Math.random()*(gridHeight*gridWidth));
     	var tiles = $(".gridTiles");
-    	$(tiles[scoreTile]).css("background-color", "green").html("+1");
+    	$(tiles[scoreTile]).css("color", "black").html("+1").blink(100);
     	return scoreTile;
     }
 //======================================================================// 
@@ -284,14 +284,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		var tiles = $(".gridTiles");
 		if (player === 1) {
 			player1Position = finish;
-			$(tiles[finish]).css("background-color", "#F03A47");
+			$(tiles[finish]).css("color", "#F03A47").html("⬤").css("font-size", "25px");
 		} else {
 			player2Position = finish;
-			$(tiles[finish]).css("background-color", "#276FBF");
+			$(tiles[finish]).css("color", "#276FBF").html("⬤").css("font-size", "25px");
 		}
 		$(tiles[start]).css("background", "none").html("");
 
-		collison(player1Position,player2Position, tiles);
+		collision(player1Position,player2Position, tiles);
 
 		if (finish === scoreTileNumber) {
 			console.log("Score");
@@ -303,9 +303,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //========================== Collision ===============================//
 	
-	function collison (player1Position, player2Position, tiles) {
+	function collision (player1Position, player2Position, tiles) {
 		if (player1Position === player2Position) {
-			$(tiles[player1Position]).css("background-color", "#694349");
+			$(tiles[player1Position]).css("color", "#694349").html("⬤").css("font-size", "25px");
 		}
 	}
 //====================================================================//
