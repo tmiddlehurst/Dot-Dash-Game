@@ -120,9 +120,19 @@ document.addEventListener('DOMContentLoaded', function() {
 		        clearInterval(interval);
 		        updateScoreBoards(player1Score,player2Score);
 		        gameTimer();
+		        playThemeMusic();
 		    }
 		}, 750);
 	}
+//======================================================================//
+
+//========================== Theme Music ===============================//
+
+	function playThemeMusic () {
+		var theme = new Audio('Sounds/51239__rutgermuller__8-bit-electrohouse.wav');
+		theme.play();
+	}
+
 //======================================================================//
 
 //======================== toggle game area ============================//
