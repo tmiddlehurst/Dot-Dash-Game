@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //=========================== Load PLayers =============================//
 
 	function loadPlayers (player1Position, player2Position) {
+		console.log("Players Loaded");
 		var tiles = $(".gridTiles");
 		$(tiles[player1Position]).css("background-color", "#F03A47");
 	}
