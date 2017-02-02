@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	var gridWidth = 16, gridHeight = 12;
+	var gridWidth = 18, gridHeight = 12;
 	var gameGrid = $("#gameGrid");
 	var player1Score = 0;
 	var player2Score = 0;
