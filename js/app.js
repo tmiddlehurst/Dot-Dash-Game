@@ -271,7 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
 //=========================== Player Movement ==========================//
 	function playerMove (player, start, finish) {
 		var tiles = $(".gridTiles");
-		collison(player1Position,player2Position,finish, tiles);
 		if (player === 1) {
 			player1Position = finish;
 			$(tiles[finish]).css("background-color", "#F03A47");
@@ -280,6 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			$(tiles[finish]).css("background-color", "#276FBF");
 		}
 		$(tiles[start]).css("background", "none");
+		collison(player1Position,player2Position, tiles);
 
 		if (finish === scoreTileNumber) {
 			console.log("Score");
@@ -291,10 +291,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //========================== Collision ===============================//
 	
-	function collison (player1Position, player2Position, finish, tiles) {
+	function collison (player1Position, player2Position, tiles) {
 		if (player1Position === player2Position) {
-			console.log("collision");
-			$(tiles[finish]).css("background-color", "#694349");
+			$(tiles[player1Position]).css("background-color", "#694349");
 		}
 	}
 //====================================================================//
