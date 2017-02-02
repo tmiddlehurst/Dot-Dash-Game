@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	var gridWidth = 20, gridHeight = 16;
+	var gridWidth = 16, gridHeight = 12;
 	var gameGrid = $("#gameGrid");
 	var player1Score = 0;
 	var player2Score = 0;
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	function gameTimer () {
-		var counter = 60;
+		var counter = 30;
 		var interval = setInterval (function() {
 			$("#game-timer").html(counter);
 			counter--;
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function createGrid () {
 		var tileWidth = ((gameGrid.width()-1)/gridWidth);
-		var tileHeight = ((gameGrid.height()-1)/gridHeight);
+		var tileHeight = ((gameGrid.height()-21)/gridHeight);
 
 		for (var i = 0; i < (gridHeight*gridWidth); i++) {
 			var newTile = $('<li></li>');
