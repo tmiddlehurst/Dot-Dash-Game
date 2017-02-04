@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	var gridWidth = 18, gridHeight = 12;
+	var gridWidth = 18, gridHeight = 14;
 	var gameGrid = $("#gameGrid");
 	var player1Score = 0;
 	var player2Score = 0;
@@ -68,10 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function pad(player, player1Score, player2Score) {
 		if (player === 1) {
-			console.log("pad one is working");
 	    	return (player1Score < 10) ? '0' + player1Score.toString() : player1Score.toString();
 		} else {
-			console.log("pad two is working");
 	    	return (player2Score < 10) ? '0' + player2Score.toString() : player2Score.toString();
 		}
 	}
@@ -80,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
 //=========================== Load PLayers =============================//
 
 	function loadPlayers (player1Position, player2Position) {
-		console.log("Players Loaded");
 		var tiles = $(".gridTiles");
 		$(tiles[player1Position]).css("background-color", "#F03A47");
 	}
@@ -109,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		var counter = 3;
 		var interval = setInterval(function() {
 		    $('#countdown-to-start').html(counter);
-		    console.log(counter);
 		    counter--;
 		    if (counter === -1) {
 		    	$("#gameGrid").show();
@@ -169,13 +165,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function checkWinner (player1Score, player2Score) {
 		if (player1Score > player2Score) {
-			console.log("1");
 			return "Player 1 Wins!";
 		} else if (player2Score > player1Score) {
-			console.log("2");
 			return "Player 2 Wins!";
 		} else {
-			console.log("draw")
 			return "It Was a Tie!";
 		}
 	}
@@ -230,8 +223,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 		var audio = new Audio('Sounds/Pickup_Coin26.wav');
 		audio.play();
-		console.log("incrementPlayerScore is working");
-		console.log(player1Score, player2Score)
 		updateScoreBoards(player1Score, player2Score);
 	}
 
@@ -242,7 +233,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	function updateScoreBoards (player1Score, player2Score) {
     	$('#player1-scoreboard').html(player1Score);
     	$('#player2-scoreboard').html(player2Score);
-    	console.log(player1Score, player2Score);
     }
 
 //======================================================================//
@@ -296,17 +286,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		var tiles = $(".gridTiles");
 		if (player === 1) {
 			player1Position = finish;
-			$(tiles[finish]).css("color", "#F03A47").html("⬤").css("font-size", "25px");
+			$(tiles[finish]).css("color", "#F03A47").html("⬤").css("font-size", "20px");
 		} else {
 			player2Position = finish;
-			$(tiles[finish]).css("color", "#276FBF").html("⬤").css("font-size", "25px");
+			$(tiles[finish]).css("color", "#276FBF").html("⬤").css("font-size", "20px");
 		}
 		$(tiles[start]).css("background", "none").html("");
 
 		collision(player1Position,player2Position, tiles);
 
 		if (finish === scoreTileNumber) {
-			console.log("Score");
 			incrementPlayerScore(player);
 			scoreTileNumber = createScoreTile();
 		}
